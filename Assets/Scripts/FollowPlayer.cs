@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FollowPlayer : MonoBehaviour
 {
+    // Keep this variable public as it has a reference (same as in java)
     public GameObject player;
     private Vector3 offset = new Vector3(0, 8, -12);
 
