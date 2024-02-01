@@ -4,17 +4,33 @@ using UnityEngine;
 
 public class FollowPlayer : MonoBehaviour
 {
-    // Keep this variable public as it has a reference (same as in java)
     public GameObject player;
     private Vector3 offset = new Vector3(0, 8, -12);
+    private bool isCameraSwitched = false;  
+    public Camera mainCamera;
+    public Camera seatCamera;
 
-    // Start is called before the first frame update
     void Start()
     {
-        
+        mainCamera.enabled = true;
+        seatCamera.enabled = false;
     }
 
-    // Update is called once per frame
+    void Update() 
+    {
+        if (Input.GetButtonDown("Camera"))
+        {
+            SwitchCamera();
+        }
+    }
+
+    void SwitchCamera()
+    {
+        isCameraSwitched = !isCameraSwitched;  
+        mainCamera.enabled = !isCameraSwitched;  
+        seatCamera.enabled = isCameraSwitched; 
+    }
+
     void LateUpdate()
     {
         // Offset the camera behind the player by adding to the player's position 
